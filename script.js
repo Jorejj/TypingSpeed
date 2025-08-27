@@ -261,6 +261,7 @@
 
     // ---------- Focus handling ----------
     el.board.addEventListener('click', () => el.input.focus());
+    el.board.addEventListener('touchstart', () => el.input.focus());
     el.input.addEventListener('keydown', handleKey);
 
     // Buttons
