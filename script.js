@@ -263,6 +263,13 @@
     el.board.addEventListener('click', () => el.input.focus());
     el.board.addEventListener('touchstart', () => el.input.focus());
     el.input.addEventListener('keydown', handleKey);
+    el.input.addEventListener('input', (e) => {
+    const value = e.target.value;
+    if (!value) return;
+    const char = value[value.length - 1];
+    handleKey({ key: char, preventDefault: () => {} });
+    e.target.value = '';
+    });
 
     // Buttons
     el.startBtn.addEventListener('click', start);
