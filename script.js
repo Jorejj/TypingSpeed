@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
     el.caret.style.left = (rect.left - parent.left) + "px";
   }
 
-  function startGame() {
+    function startGame() {
     if (started) return;
     started = true;
     timeLeft = parseInt(el.duration.value, 10);
@@ -48,17 +48,19 @@ document.addEventListener("DOMContentLoaded", () => {
     el.results.textContent = "";
     correctChars = 0;
     typedChars = 0;
+    current = 0;
     generateWords();
-    el.input.focus();
+
+    el.input.focus(); // ✅ make sure typing works right away
 
     timer = setInterval(() => {
-      timeLeft--;
-      el.time.textContent = timeLeft;
-      if (timeLeft <= 0) endGame();
+        timeLeft--;
+        el.time.textContent = timeLeft;
+        if (timeLeft <= 0) endGame();
     }, 1000);
-  }
+    }
 
-  function endGame() {
+    function endGame() {
     clearInterval(timer);
     started = false;
     const wpm = Math.round((correctChars / 5) / (parseInt(el.duration.value, 10) / 60));
@@ -70,13 +72,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let high = parseInt(localStorage.getItem("typingHigh") || "0", 10);
     if (wpm > high) {
-      high = wpm;
-      localStorage.setItem("typingHigh", high);
+        high = wpm;
+        localStorage.setItem("typingHigh", high);
     }
     el.high.textContent = high;
-  }
+    }
 
-  el.input.addEventListener("input", () => {
+    // ✅ Attach this ONCE, outside startGame()
+    document.addEventListener("keydown", () => {
+    if (!started) return;
+    if (document.activeElement !== el.input) {
+        el.input.focus();
+    }
+    });
+
+    el.input.addEventListener("input", () => {
     const active = el.board.querySelector(".word.active");
     if (!active) return;
 
@@ -85,22 +95,23 @@ document.addEventListener("DOMContentLoaded", () => {
     typedChars++;
 
     if (val === target && el.input.value.endsWith(" ")) {
-      active.classList.remove("active");
-      active.classList.add("correct");
-      correctChars += target.length;
-      el.input.value = "";
-      current++;
-      const next = el.board.querySelectorAll(".word")[current];
-      if (next) next.classList.add("active");
-      moveCaret();
+        active.classList.remove("active");
+        active.classList.add("correct");
+        correctChars += target.length;
+        el.input.value = "";
+        current++;
+        const next = el.board.querySelectorAll(".word")[current];
+        if (next) next.classList.add("active");
+        moveCaret();
     } else {
-      if (target.startsWith(val)) {
+        if (target.startsWith(val)) {
         active.classList.remove("incorrect");
-      } else {
+        } else {
         active.classList.add("incorrect");
-      }
+        }
     }
-  });
+    });
+
 
   el.startBtn.addEventListener("click", startGame);
   el.resetBtn.addEventListener("click", generateWords);
