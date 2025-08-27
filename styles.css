@@ -92,16 +92,17 @@
 
     .hidden-input {
         position: absolute;
-        bottom: 10px;       
-        left: 10px;
+        top: 5px;        
+        left: 5px;
         width: 1px;
         height: 1px;
-        opacity: 0.01;      
+        opacity: 0.01;   
         font-size: 16px; 
         border: none;
         background: transparent;
         color: transparent;
       }
+
 
 
 
