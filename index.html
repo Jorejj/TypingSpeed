@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Typing Speed Game</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div class="title">⌨️ Typing Speed Game</div>
+      <div class="controls">
+        <select id="duration" class="select" title="Test duration">
+          <option value="30">30s</option>
+          <option value="60" selected>60s</option>
+          <option value="120">120s</option>
+        </select>
+        <select id="wordset" class="select" title="Word list">
+          <option value="common" selected>Common (EN)</option>
+          <option value="code">Code Terms</option>
+          <option value="ph">Tagalog Mix</option>
+        </select>
+        <button id="startBtn" class="btn">Start (Enter)</button>
+        <button id="resetBtn" class="btn secondary">Reset</button>
+      </div>
+    </header>
+
+    <section class="stats">
+      <div class="card"><div class="label">Time</div><div id="time" class="value">60</div></div>
+      <div class="card"><div class="label">WPM</div><div id="wpm" class="value">0</div></div>
+      <div class="card"><div class="label">Accuracy</div><div id="acc" class="value">100%</div></div>
+      <div class="card"><div class="label">High Score</div><div id="high" class="value">—</div></div>
+    </section>
+
+    <section class="board card">
+      <input id="hiddenInput" class="hidden-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+      <div id="words" class="words" aria-live="polite"></div>
+      <div id="caret" class="caret" style="left: 18px; top: 20px;"></div>
+    </section>
+
+    <div class="results" id="results"></div>
+
+    <footer>
+      Press <kbd>Enter</kbd> to start • <kbd>Space</kbd> to finish a word • <kbd>Backspace</kbd> to fix mistakes • Click the board to focus.
+    </footer>
+  </div>
+
+ 
+  <script src="script.js"></script>
+</body>
+</html>
