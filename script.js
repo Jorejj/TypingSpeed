@@ -299,8 +299,24 @@
       moveCaretToCurrent();
     }
 
-    el.wordset.addEventListener('change', () => { if (!state.running) { state.words = sampleWords(el.wordset.value); renderWords(); }});
-    el.duration.addEventListener('change', () => { if (!state.running) { el.time.textContent = el.duration.value; }});
+    el.wordset.addEventListener('change', () => { 
+      if (!state.running) { 
+      state.words = sampleWords(el.wordset.value); 
+      renderWords(); 
+        }
+        });
+
+        el.duration.addEventListener('change', () => { 
+          if (!state.running) { 
+            el.time.textContent = el.duration.value; 
+          }
+        });
+
+        el.input.addEventListener('focus', () => {
+          el.board.scrollIntoView({ block: 'center', behavior: 'auto' });
+        });
+
+
 
     window.addEventListener('resize', moveCaretToCurrent);
 

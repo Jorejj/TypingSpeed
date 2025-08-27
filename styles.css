@@ -91,18 +91,18 @@
     @keyframes blink { 50% { opacity: 0; }}
 
     .hidden-input {
-      position: absolute;
-      bottom: 10px;
-      left: 10px;
-      width: 90%;
-      max-width: 300px;
-      height: 40px;
-      opacity: 0.01;       
-      font-size: 16px;     
-      border: none;
-      background: transparent;
-      color: transparent;
-    }
+        position: absolute;
+        bottom: 10px;       
+        left: 10px;
+        width: 1px;
+        height: 1px;
+        opacity: 0.01;      
+        font-size: 16px; 
+        border: none;
+        background: transparent;
+        color: transparent;
+      }
+
 
 
     footer { 
