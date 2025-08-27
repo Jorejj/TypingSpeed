@@ -267,7 +267,7 @@
     const value = e.target.value;
     if (!value) return;
     const char = value[value.length - 1];
-    handleKey({ key: char, preventDefault: () => {} });
+    handleKey({ key: char,  preventDefault: () => e.preventDefault() });
     e.target.value = '';
     });
 
