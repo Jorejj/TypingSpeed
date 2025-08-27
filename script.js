@@ -265,11 +265,24 @@
     el.input.addEventListener('keydown', handleKey);
     el.input.addEventListener('input', (e) => {
     const value = e.target.value;
-    if (!value) return;
-    const char = value[value.length - 1];
-    handleKey({ key: char,  preventDefault: () => e.preventDefault() });
+    if (value.endsWith(' ')) {
+    handleKey({ key: ' ', preventDefault: () => e.preventDefault() });
     e.target.value = '';
-    });
+    return;
+          }
+
+          if (value.length < state.charIndex) {
+            handleKey({ key: 'Backspace', preventDefault: () => e.preventDefault() });
+            return;
+          }
+
+        
+          const newChar = value[value.length - 1];
+          if (newChar) {
+            handleKey({ key: newChar, preventDefault: () => e.preventDefault() });
+          }
+          });
+
 
     // Buttons
     el.startBtn.addEventListener('click', start);
