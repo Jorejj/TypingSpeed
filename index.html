@@ -57,20 +57,32 @@
 
   <script src="script.js"></script>
 
-  
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous" 
-src="https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js"></script>
+  <!-- Messenger Extensions SDK (for webview inside Messenger) -->
+  <script src="https://connect.facebook.net/en_US/messenger.Extensions.js"></script>
+  <script>
+    window.extAsyncInit = function() {
+      console.log("Messenger Extensions SDK loaded");
+      
+    };
+  </script>
 
-<div class="fb-customerchat"
-     attribution="setup_tool"
-     page_id="107044898055161"
-     theme_color="#0084ff"
-     logged_in_greeting="Hi! How can we help you?"
-     logged_out_greeting="Hi! Please log in to chat with us."
-     greeting_dialog_display="fade"
-     minimized="false">
-</div>
+  <!-- Floating Messenger Button (works everywhere, no CORS issues) -->
+  <a href="https://m.me/107044898055161" target="_blank"
+     style="
+       position: fixed;
+       bottom: 20px;
+       right: 20px;
+       background: #0084ff;
+       color: white;
+       padding: 12px 16px;
+       border-radius: 50px;
+       text-decoration: none;
+       font-weight: bold;
+       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+       z-index: 9999;
+     ">
+     💬 Message us
+  </a>
 
 </body>
 </html>
