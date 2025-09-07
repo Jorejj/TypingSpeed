@@ -133,3 +133,16 @@
         grid-template-columns: repeat(2, minmax(0,1fr)); 
       }
     }
+
+
+    
+.fb_dialog, .fb-customerchat {
+    bottom: 70px !important;  
+}
+
+
+@media (max-width: 768px) {
+    .fb_dialog, .fb-customerchat {
+        bottom: 20px !important;  
+    }
+}
